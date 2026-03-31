@@ -3,19 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, useMotionValue, animate, AnimatePresence } from 'motion/react';
-import { RefreshCw, Share2 } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import { STRATEGIES } from './constants';
-import { toPng } from 'html-to-image';
 
 export default function App() {
   const [currentStrategy, setCurrentStrategy] = useState('');
   const [isFlipped, setIsFlipped] = useState(false);
   const [isShuffling, setIsShuffling] = useState(false);
   
-  const cardRef = useRef<HTMLDivElement>(null);
-
   // Motion value for flip only
   const flipRotation = useMotionValue(0);
 
@@ -63,31 +60,6 @@ export default function App() {
     }, 600);
   };
 
-  const handleShare = async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!cardRef.current) return;
-    triggerHaptic(20);
-    
-    try {
-      const dataUrl = await toPng(cardRef.current, {
-        cacheBust: true,
-        backgroundColor: '#121212',
-        pixelRatio: 2, // Better quality
-        style: {
-          transform: 'scale(1)',
-          borderRadius: '0px'
-        }
-      });
-      
-      const link = document.createElement('a');
-      link.download = `estrategia-${Date.now()}.png`;
-      link.href = dataUrl;
-      link.click();
-    } catch (err) {
-      console.error('Error sharing image:', err);
-    }
-  };
-
   const cardShadows = `
     0px 9px 60px 0px rgba(0, 0, 0, 0.70),
     0px 4px 4px 0px rgba(0, 0, 0, 0.25),
@@ -112,7 +84,6 @@ export default function App() {
               className="relative w-full max-w-[320px] aspect-[3/4.5] perspective-1000"
             >
               <motion.div
-                ref={cardRef}
                 className="w-full h-full cursor-pointer preserve-3d"
                 style={{
                   rotateY: flipRotation,
@@ -154,16 +125,6 @@ export default function App() {
                     <p className="text-[#151515] text-center text-lg md:text-2xl font-inter-tight font-medium leading-tight">
                       {currentStrategy}
                     </p>
-                  </div>
-
-                  {/* Card Actions */}
-                  <div className="flex gap-6 relative z-20 mt-4">
-                    <button 
-                      onClick={handleShare}
-                      className="p-2 rounded-full bg-black/5 text-black/40 hover:text-black transition-all"
-                    >
-                      <Share2 className="w-5 h-5" />
-                    </button>
                   </div>
                 </div>
               </motion.div>
