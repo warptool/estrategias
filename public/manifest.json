@@ -1,0 +1,22 @@
+{
+  "name": "Estrategias Oblicuas",
+  "short_name": "Estrategias",
+  "description": "Una versión digital de las cartas de Brian Eno y Peter Schmidt para desbloquear la creatividad.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#151515",
+  "theme_color": "#151515",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
