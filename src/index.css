@@ -10,7 +10,6 @@ body {
   background-color: #121212;
   color: #fff;
   overflow: hidden;
-  touch-action: none;
 }
 
 /* Grain texture overlay */

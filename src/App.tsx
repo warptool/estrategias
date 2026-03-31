@@ -68,7 +68,7 @@ export default function App() {
 
   return (
     <div 
-      className="flex flex-col items-center justify-center min-h-screen p-8 md:p-12 font-inter-tight select-none overflow-hidden relative"
+      className="flex flex-col items-center justify-center min-h-screen p-8 md:p-12 font-inter-tight select-none overflow-hidden relative touch-manipulation"
       style={{ background: 'radial-gradient(circle at center, #1E1E1E 0%, #121212 100%)' }}
     >
       <div className="grain-overlay" />
@@ -90,6 +90,7 @@ export default function App() {
                   transformStyle: 'preserve-3d',
                 }}
                 onTap={handleFlip}
+                onClick={handleFlip}
               >
                 {/* Front Side (Estrategia) */}
                 <div
